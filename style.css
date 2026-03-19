@@ -1,5 +1,5 @@
 body {
-    background: #f0f4f8; 
+    background: #f3e5f5; /* Ungu Pastel Sangat Muda */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,38 +35,39 @@ body {
 .judul {
     font-weight: 600;
     font-size: 1.8rem;
-    color: #2c3e50;
+    color: #4a148c; /* Ungu Gelap agar Judul Terbaca Jelas */
     margin-bottom: 20px;
 }
 
 .kotak-surat {
-    background: white;
+    background: white; /* Kotak Pesan Putih Bersih */
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 25px rgba(74, 20, 140, 0.05); /* Bayangan Ungu Halus */
     max-width: 400px;
     min-height: 200px;
     line-height: 1.6;
-    color: #444;
+    color: #333; /* Teks Dalam Kotak Putih Agar Terbaca (Hampir Hitam) */
     text-align: left;
 }
 
 .catatan-bawah {
     margin-top: 20px;
-    color: #7f8c8d;
+    color: #7e57c2; /* Teks Bawah Ungu Menengah */
     font-size: 0.9rem;
 }
 
-/* Efek bintang melayang */
+/* Efek Bintang Melayang - Bintang Diubah Menjadi Putih keperakan */
 .bintang {
     position: absolute;
-    color: #f1c40f;
+    color: #ffffff; /* Bintang Putih */
     font-size: 15px;
+    filter: drop-shadow(0 0 3px rgba(126, 87, 194, 0.5)); /* Efek Bersinar */
     animation: melayang 5s linear infinite;
     top: 100vh;
 }
 
 @keyframes melayang {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
     100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
 }

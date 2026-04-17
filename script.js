@@ -1,51 +1,55 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kejutan Spesial Untuk Dini</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+const ucapan = "Habede, Dini. Semoga di usia yang bertambah ini, kamu senantiasa diberikan kesehatan, kebahagiaan, dan kemudahan dalam segala hal yang sedang kamu jalani. Aku berharap semua cita-cita dan impian yang sedang kamu kejar bisa tercapai satu per satu dengan lancar. Tetaplah menjadi pribadi yang baik dan terus memberikan dampak positif bagi orang-orang di sekitarmu. Selamat merayakan hari spesialmu, semoga tahun ini membawa banyak cerita indah dan kesuksesan yang lebih besar dari tahun sebelumnya.";
 
-    <div id="wadah-bintang"></div>
+function mulaiSurat() {
+    // Hilangkan tombol amplop
+    document.getElementById('tombol-amplop').style.display = 'none';
+    
+    // Munculkan wadah konten
+    const konten = document.getElementById('konten-ultah');
+    konten.classList.remove('tersembunyi');
+    
+    // Beri jeda sedikit agar efek transisi CSS (muncul dari bawah) terlihat
+    setTimeout(() => {
+        document.getElementById('kotak-kaca').classList.add('muncul');
+        efekKetik(ucapan, "teks-ucapan", 45); // Kecepatan ketik sedikit disesuaikan
+    }, 50);
+    
+    // Jalankan animasi bintang
+    setInterval(buatBintang, 200); // Bintang muncul lebih sering
+}
 
-    <div class="wadah" id="halaman-1">
-        <div class="pembungkus-amplop" onclick="mulaiSurat()" id="tombol-amplop">
-            <div class="amplop">📩</div>
-            <p id="petunjuk">Klik untuk membuka pesan</p>
-        </div>
+function efekKetik(teks, elemenId, kecepatan) {
+    let i = 0;
+    const elemen = document.getElementById(elemenId);
+    elemen.innerHTML = ""; // Pastikan kosong sebelum mengetik
+    function mengetik() {
+        if (i < teks.length) {
+            elemen.innerHTML += teks.charAt(i);
+            i++;
+            setTimeout(mengetik, kecepatan);
+        }
+    }
+    mengetik();
+}
 
-        <div id="konten-ultah" class="tersembunyi">
-            <div class="kotak-kaca" id="bingkai-pesan">
-                <h1 class="judul">HABEDE INGKI EH DINI 🎂</h1>
-                <div class="isi-pesan">
-                    <p id="teks-ucapan"></p>
-                </div>
-                <button id="tombol-lanjut" class="tersembunyi" onclick="pindahHalaman(2)">Buka Hadiah ✨</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="wadah tersembunyi" id="halaman-2">
-        <div class="kotak-kaca">
-            <h2 class="judul">Pilih satu kado buat kamu! 🎁</h2>
-            <div class="grid-kado">
-                <div class="kado" onclick="bukaKado(1)">🎁<p>Kado 1</p></div>
-                <div class="kado" onclick="bukaKado(2)">🎁<p>Kado 2</p></div>
-                <div class="kado" onclick="bukaKado(3)">🎁<p>Kado 3</p></div>
-            </div>
-            
-            <div id="hasil-kado" class="tersembunyi">
-                <div class="kotak-hadiah">
-                    <p id="teks-hadiah"></p>
-                    <button onclick="resetKado()" class="tombol-ulang">Pilih kado lain</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+function buatBintang() {
+    const wadah = document.getElementById('wadah-bintang');
+    const bintang = document.createElement('div');
+    bintang.classList.add('bintang');
+    bintang.innerHTML = '✨';
+    
+    // Acak ukuran bintang agar terlihat lebih natural (antara 10px - 25px)
+    const ukuran = Math.random() * 15 + 10;
+    bintang.style.fontSize = ukuran + 'px';
+    
+    // Acak posisi horizontal
+    bintang.style.left = Math.random() * 100 + 'vw';
+    
+    // Acak kecepatan melayang
+    bintang.style.animationDuration = Math.random() * 3 + 4 + 's';
+    
+    wadah.appendChild(bintang);
+    
+    // Hapus elemen bintang setelah lewat layar agar web tidak berat
+    setTimeout(() => { bintang.remove(); }, 7000);
+}

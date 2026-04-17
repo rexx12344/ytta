@@ -1,40 +1,51 @@
-const ucapan = "Habede, Dini. Semoga di usia yang bertambah ini, kamu senantiasa diberikan kesehatan, kebahagiaan, dan kemudahan dalam segala hal yang sedang kamu jalani. Aku berharap semua cita-cita dan impian yang sedang kamu kejar bisa tercapai satu per satu dengan lancar. Tetaplah menjadi pribadi yang baik dan terus memberikan dampak positif bagi orang-orang di sekitarmu. Selamat merayakan hari spesialmu, semoga tahun ini membawa banyak cerita indah dan kesuksesan yang lebih besar dari tahun sebelumnya.";
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kejutan Spesial Untuk Dini</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
-function mulaiSurat() {
-    // Sembunyikan amplop
-    document.querySelector('.pembungkus-amplop').style.display = 'none';
-    
-    // Tampilkan konten utama
-    const konten = document.getElementById('konten-ultah');
-    konten.classList.remove('tersembunyi');
-    
-    // Jalankan efek mengetik
-    efekKetik(ucapan, "teks-ucapan", 40);
-    
-    // Jalankan animasi bintang
-    setInterval(buatBintang, 300); // Sedikit dipercepat agar lebih ramai
-}
+    <div id="wadah-bintang"></div>
 
-function efekKetik(teks, elemenId, kecepatan) {
-    let i = 0;
-    const elemen = document.getElementById(elemenId);
-    function mengetik() {
-        if (i < teks.length) {
-            elemen.innerHTML += teks.charAt(i);
-            i++;
-            setTimeout(mengetik, kecepatan);
-        }
-    }
-    mengetik();
-}
+    <div class="wadah" id="halaman-1">
+        <div class="pembungkus-amplop" onclick="mulaiSurat()" id="tombol-amplop">
+            <div class="amplop">📩</div>
+            <p id="petunjuk">Klik untuk membuka pesan</p>
+        </div>
 
-function buatBintang() {
-    const bintang = document.createElement('div');
-    bintang.classList.add('bintang');
-    bintang.innerHTML = '✨';
-    bintang.style.left = Math.random() * 100 + 'vw';
-    bintang.style.animationDuration = Math.random() * 2 + 3 + 's';
-    document.getElementById('wadah-bintang').appendChild(bintang);
-    
-    setTimeout(() => { bintang.remove(); }, 5000);
-}
+        <div id="konten-ultah" class="tersembunyi">
+            <div class="kotak-kaca" id="bingkai-pesan">
+                <h1 class="judul">HABEDE INGKI EH DINI 🎂</h1>
+                <div class="isi-pesan">
+                    <p id="teks-ucapan"></p>
+                </div>
+                <button id="tombol-lanjut" class="tersembunyi" onclick="pindahHalaman(2)">Buka Hadiah ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="wadah tersembunyi" id="halaman-2">
+        <div class="kotak-kaca">
+            <h2 class="judul">Pilih satu kado buat kamu! 🎁</h2>
+            <div class="grid-kado">
+                <div class="kado" onclick="bukaKado(1)">🎁<p>Kado 1</p></div>
+                <div class="kado" onclick="bukaKado(2)">🎁<p>Kado 2</p></div>
+                <div class="kado" onclick="bukaKado(3)">🎁<p>Kado 3</p></div>
+            </div>
+            
+            <div id="hasil-kado" class="tersembunyi">
+                <div class="kotak-hadiah">
+                    <p id="teks-hadiah"></p>
+                    <button onclick="resetKado()" class="tombol-ulang">Pilih kado lain</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
